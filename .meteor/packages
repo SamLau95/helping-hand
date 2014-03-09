@@ -7,3 +7,6 @@ standard-app-packages
 insecure
 preserve-inputs
 underscore
+accounts-ui-unstyled
+accounts-google
+accounts-facebook
