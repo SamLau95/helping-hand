@@ -10,6 +10,7 @@
   {{> results}}
   {{> nonProfitPage}}
   {{> showForm}}
+  <br>
 </body>
 
 <template name="showForm">
@@ -53,18 +54,22 @@
 <template name="nonProfitPage">
   {{#if viewingNpo}}
     <div class='row'>
-      <p id="backToResults">Back to search results.</p>
+      <p id="backToResults">Back to search results</p>
       {{> listNPO}}
     </div>
   {{/if}}
 </template>
 
 <template name="listNPO">
-  <ul>Name: {{title}}</ul>
-  <ul>Located: {{locations}}</ul>
-  <ul>What we do: {{description}}</ul>
-  <ul>Tags: {{keywords}}</ul>
-  <ul>Email: {{email}}</ul>
+  <div class='centalign'>
+    <div class='imgreplacementlrg'><div class='repson'>{{title}}</div></div>
+    <h4><strong>Email:</strong> {{email}}</h4>
+    <h4><strong>Location:</strong> {{locations}}</h4>
+    <h4><strong>Tags:</strong> {{keywords}}</h4>
+    <p><h4><strong>Description</strong></h4> {{description}}</p>
+    <p class="notdescription"><h4><strong>Mission</strong></h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin urna a posuere commodo. Praesent quis sem vel augue luctus mattis id quis nunc. Aliquam vel justo eros. Pellentesque euismod augue nec mauris interdum ultricies. Aliquam ut velit tortor. Suspendisse eu faucibus mi, quis venenatis nisi. </p>
+    <p class="notdescription"><h4><strong>Services</strong></h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin urna a posuere commodo. Praesent quis sem vel augue luctus mattis id quis nunc. Aliquam vel justo eros. Pellentesque euismod augue nec mauris interdum ultricies. Aliquam ut velit tortor. Suspendisse eu faucibus mi, quis venenatis nisi. </p>
+  </div>
   {{> contactForm }}
 </template>
 
@@ -87,15 +92,13 @@
       <button class="edit">Edit!</button>
     {{/if}}
   {{/if}}
-    <p class="notdescription"><h4><strong>Mission</strong></h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin urna a posuere commodo. Praesent quis sem vel augue luctus mattis id quis nunc. Aliquam vel justo eros. Pellentesque euismod augue nec mauris interdum ultricies. Aliquam ut velit tortor. Suspendisse eu faucibus mi, quis venenatis nisi. </p>
-    <p class="notdescription"><h4><strong>Services</strong></h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin urna a posuere commodo. Praesent quis sem vel augue luctus mattis id quis nunc. Aliquam vel justo eros. Pellentesque euismod augue nec mauris interdum ultricies. Aliquam ut velit tortor. Suspendisse eu faucibus mi, quis venenatis nisi. </p>
 </template>
 <template name="contactForm">
   {{#if hasSentEmail}}
   
   {{else}}
     <br>
-    <div class='eight columns centered'>
+    <div class='eight columns centered centalign'>
       <hr/>
       <h3>Send an email!</h3>
       <div class="field">
