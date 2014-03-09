@@ -1,5 +1,5 @@
 // Make Nonprofits collection visible
-var Nonprofits = new Meteor.Collection("nonprofits");
+Nonprofits = new Meteor.Collection("nonprofits");
 
 // Set default session values
 Session.setDefault("query", "");
@@ -30,7 +30,6 @@ var arrayCombiner = function(arr1, arr2) { return arr1.concat(arr2); };
 var interval;
 var timeLeft = function() {
   var clock = Session.get("loading");
-  console.log(clock);
   Session.set("loading", clock - .5);
   if (clock < 0)
     Meteor.clearInterval(interval);

@@ -16,7 +16,7 @@ Template.editForm.editing = function () {
 function getForm(attr, usr){
   var NPO = Nonprofits.findOne({ owner: usr._id });
   if ( NPO == undefined ) {
-    return " ";
+    return "";
   } else {
     return NPO[attr];
   }
