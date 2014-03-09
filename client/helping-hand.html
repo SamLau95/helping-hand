@@ -6,6 +6,7 @@
   {{loginButtons}}
   {{> searchForm}}
   {{> results}}
+  {{> nonProfitPage}}
 </body>
 
 <template name="searchForm">
@@ -30,23 +31,21 @@
 <template name="npList">
   <ul>
     {{#each matches}}
-      <li>{{name}}</li>
+      <li class="npo" id="{{ _id }}">{{name}}</li>
     {{/each}}
   </ul>
 </template>
 
 <template name="nonProfitPage">
   {{#if viewingNpo}}
-  <div class='row'>
-    {{> nPOName }}
-    {{> location }}
-    {{> keywords }}
-    {{> description }}
-  </div>
+    <div class='row'>
+      {{> nPOName }}
+      {{> location }}
+      {{> keywords }}
+      {{> description }}
+    </div>
   {{/if}}
 </template>
-
-
 
 <template name="nPOName">
   {{#if editName}}
