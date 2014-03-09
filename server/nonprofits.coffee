@@ -1,3 +1,4 @@
+# Seed data
 Nonprofits = new Meteor.Collection("nonprofits")
 Meteor.startup ->
   if Nonprofits.find().count() is 0
@@ -19,7 +20,3 @@ Meteor.startup ->
         "education"
         "teachers"
       ]
-
-Meteor.publish "nonprofits", (tag) ->
-  Nonprofits.find keywords:
-    $elemMatch: tag
