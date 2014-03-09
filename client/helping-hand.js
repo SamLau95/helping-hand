@@ -3,6 +3,7 @@ Nonprofits = new Meteor.Collection("nonprofits");
 
 // Set default session values
 Session.setDefault("query", "");
+Session.setDefault("loading", 1.0);
 Session.setDefault("viewingNpo", false);
 Session.setDefault("editing", false);
 Session.setDefault("showingEditForm", false)
@@ -15,12 +16,19 @@ var queryIsBlank = function() {
   return !query || 0 === query.length;
 };
 
-// Helpers for search
+// Search algorithm
 var searchByKeyword = function(keyword) {
-  return Nonprofits.find({'keywords': keyword.toLowerCase()}).fetch();
+  var re = new RegExp('.*' + keyword + '.*', 'i');
+  return Nonprofits.find({$or: [{'keywords': keyword.toLowerCase()},
+                                {'title': re },
+                                {'location': re}]}).fetch();
 };
 
 var arrayCombiner = function(arr1, arr2) { return arr1.concat(arr2); };
+
+var timeLeft = function() {
+  
+};
 
 // Listen for typing in search form
 Template.searchForm.events({
@@ -37,8 +45,8 @@ Template.searchForm.events({
   }
 });
 
-// Search algorithm
-Template.npList.matches = function () {
+// Search implementation
+Template.npList.matches = function() {
   var searchTerms = Session.get("query").split(/\s+/);
   return _.reduce(_.map(searchTerms, searchByKeyword),
                   arrayCombiner);
@@ -48,6 +56,10 @@ Template.npList.matches = function () {
 Template.results.searching = function() {
   return !queryIsBlank() && !Session.get("viewingNpo") && !Session.get("showingEditForm");
 }
+
+Template.results.loading = function() {
+  return Session.get('loading');
+};
 
 // Search result listing
 Template.npList.events({
