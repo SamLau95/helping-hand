@@ -14,6 +14,7 @@ if (Meteor.isClient) {
       query = t.find('#search').value;
       Session.set("query", query);
       Session.set("emptyQuery", isEmpty(query));
+      if (!isEmpty(query)){$('#searchWrapper').removeClass('vertalign');} else{$('#searchWrapper').addClass('vertalign');}
     }
   });
 
