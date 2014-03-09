@@ -4,19 +4,18 @@
 
 <body>
   <div class='row'>
-    {{loginButtons}}
+    {{loginButtons}}{{> showForm }}
   </div>
   {{> searchForm}}
   {{> results}}
   {{> nonProfitPage}}
-  {{> showForm}}
+  {{> editForm}}
   <br>
 </body>
 
 <template name="showForm">
   {{#if currentUser}}
-    <p id="showEdit">  Edit Organization </p>
-    {{> editForm}}
+    <div class='login-button' id="showEdit">  Edit Organization </p>
   {{/if}}
 </template>
 

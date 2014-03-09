@@ -67,7 +67,7 @@
 #login-email-label-and-input{@extend .inlined; @extend input}
   #login-password-label-and-input{@extend .inlined; @extend input}
   .login-button{@extend .inlined; @extend .secondary; @extend .btn; @extend .medium; color:$white; padding-left:5px !important; padding-right:5px !important;  margin-left: 5px;
-  margin-right:5px;}
+  margin-right:5px; cursor: pointer;}
 
 #backToResults{
   font-size: $large;
