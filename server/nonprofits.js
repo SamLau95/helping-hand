@@ -9,3 +9,7 @@ Meteor.startup(function() {
                         keywords: ['STEM', 'education', 'teachers'] });
   }
 });
+
+Meteor.publish("nonprofits", function (tag) {
+  return Nonprofits.find( { keywords: { $elemMatch: tag }});
+})
