@@ -31,7 +31,7 @@
 <template name="results">
   {{#if searching}}
     {{#if loading}}
-      <p>Loading search results...</p>
+      <div class='pace pace-active'><div class='pace-progress'></div><div class='pace-activity'></div></div>
     {{ else }}
       <div class="row">
         <div class="twelve columns centered">
