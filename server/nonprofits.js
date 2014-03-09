@@ -55,7 +55,25 @@ Meteor.startup(function() {
                   locations: 'Oakland',
                   description: 'LOREM IPSUM',
                   email: 'randolph@supportoaklandartists.org',
-                  owner: userIds[6] } ];
+                  owner: userIds[6] },
+                { title: 'College Track',
+                  keywords: ['education', 'lowincome'],
+                  locations: 'Oakland',
+                  description: 'LOREM IPSUM',
+                  email: 'slin@collegetrack.org',
+                  owner: userIds[7] }
+                { title: 'Foundation for Sustainable Development',
+                  keywords: ['sustainability', 'community', 'environment'],
+                  locations: 'Oakland',
+                  description: 'LOREM IPSUM',
+                  email: 'Diego@fsdinternational.org',
+                  owner: userIds[8] },
+                { title: 'Roots of Success',
+                  keywords: ['education', 'lowincome', 'environment'],
+                  locations: 'Berkeley',
+                  description: 'LOREM IPSUM',
+                  email: 'shamar@rootsofsuccess.org',
+                  owner: userIds[9] }, ];
     _.map(NPOseeds, function(seed) { Nonprofits.insert(seed) })
   }
 });
