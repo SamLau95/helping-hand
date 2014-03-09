@@ -7,7 +7,7 @@ Meteor.startup(function() {
     Nonprofits.insert({ name: 'Partners in School Innovation',
                         keywords: ['education', 'literacy'], location: "Oakland", description: "LOREM IPSUM"});
     Nonprofits.insert({ name: 'IISME',
-                        keywords: ['STEM', 'education', 'teachers'], location: "Oakland", description: "LOREM IPSUM" });
+                        keywords: ['stem', 'education', 'teachers'], location: "Oakland", description: "LOREM IPSUM" });
   }
 });
 
