@@ -65,93 +65,59 @@ Template.nonProfitPage.events({
   }
 });
 
-Session.set("Tedit", false);
-Session.set("Ledit", false);
-Session.set("Kedit", false);
-Session.set("Dedit", false);
+Session.set("editing", false);
 
-
-Template.nPOTitle.editTitle = function () {
-  return Session.get("Tedit");
+Template.editForm.editing = function () {
+  return Session.get("editing");
 }
 
-Template.nPOTitle.title = function () {
-  var NPO = Nonprofits.findOne(this);
-  return NPO.title;
+function getAttr(attr, usr){
+  var NPO = Nonprofits.findOne({ user_id: user._id})
+  if ( NPO == 'undefined'){
+    return "The" + attr + "of your organization goes here!";
+  } else {
+    return NPO.call(attr);
+  }
 }
 
-Template.locations.editLoc = function () {
-  return Session.get("Ledit");
+Template.editForm.title = function () {
+  return getForm("title", currentUser);
 }
 
-Template.locations.locations = function () {
-  var NPO = Nonprofits.findOne(this);
-  return NPO.location;
+Template.editForm.locations = function () {
+  return getForm("locations", currentUser);
 }
 
-Template.keywords.editKey = function () {
-  return Session.get("Kedit");
+Template.editForm.keywords = function () {
+  return getForm("keywords", currentUser);
 }
 
-Template.keywords.keywords = function () {
-  var NPO = Nonprofits.findOne(this);
-  return NPO.keywords;
+Template.editForm.description = function () {
+  return getForm("description", currentUser);
 }
 
-Template.description.editDescrip = function () {
-  return Session.get("Dedit");
+Template.editForm.email = function () {
+  return getForm("email", currentUser);
 }
 
-Template.description.description = function () {
-  var NPO = Nonprofits.findOne(this);
-  return NPO.description;
-}
-
-Template.nPOTitle.events({
+Template.editForm.events({
   'click .tButton': function (e,t) {
-    if (!Session.get("Tedit")){
-      Session.set("Tedit", true);
+    if (!Session.get("editing")){
+      Session.set("editing", true);
     } else {
-      var NPO = Nonprofits.findOne(t.data);
-      Nonprofits.update({_id: NPO._id}, { $set: { title: $("#title").val()}});
-      Session.set("Tedit", false);
-    }
-  }
-});
-
-Template.locations.events({
-  'click .lButton': function (e,t) {
-    if (!Session.get("Ledit")){
-      Session.set("Ledit", true);
-    } else {
-      var NPO = Nonprofits.findOne(t.data);
-      Nonprofits.update({_id: NPO._id}, { $set: {locations: $("#locations").val()}});
-      Session.set("Ledit", false);
-    }
-  }
-});
-
-Template.keywords.events({
-  'click .kButton': function (e,t) {
-    if (!Session.get("Kedit")){
-      Session.set("Kedit", true);
-    } else {
-      var NPO = Nonprofits.findOne(t.data);
-      Nonprofits.update({_id: NPO._id},
-                        { $set: {keywords: $("#keywords").val().split(/,\s+/)}});
-      Session.set("Kedit", false);
-    }
-  }
-});
-
-Template.description.events({
-  'click .dButton': function (e,t) {
-    if (!Session.get("Dedit")){
-      Session.set("Dedit", true);
-    } else {
-      var NPO = Nonprofits.findOne(t.data);
-      Nonprofits.update({_id: NPO._id}, { $set: {description: $("#description").val()}});
-      Session.set("Dedit", false);
+      var NPO = Nonprofits.findOne({user_id: currentUser._id});
+      if (NPO == 'undefined') {
+        title = $("#title").val();
+        location: $("#locations").val();
+        description = $("#description").val();
+        email = $("#email").val();
+        keywords = $("keywords").val().split(/,\s+/);
+        Nonprofits.insert({ title: title, keywords: keywords, location: location, description: description, email: email, current_id: currentUser._id });
+        Session.set("editing", false); 
+      } else {
+        Nonprofits.update({_id: NPO._id}, { $set: { title: title, keywords: keywords, location: location, description: description, email: email }});
+        Session.set("editing", false); 
+      }
     }
   }
 });
@@ -165,3 +131,4 @@ Template.contactForm.events({
       $('#emailContent')[0].value);
   }
 });
+

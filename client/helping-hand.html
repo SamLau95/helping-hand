@@ -7,6 +7,9 @@
   {{> searchForm}}
   {{> results}}
   {{> nonProfitPage}}
+  {{#if currentUser}}
+    {{> editForm}}
+  {{/if}}
 </body>
 
 <template name="searchForm">
@@ -44,53 +47,36 @@
   {{#if viewingNpo}}
     <div class='row'>
       <p id="backToResults">Back to search results.</p>
-      {{> nPOTitle}}
-      {{> locations }}
-      {{> keywords }}
-      {{> description }}
-      {{> contactForm}}
+      {{> listNPO}}
     </div>
   {{/if}}
 </template>
 
-<template name="nPOTitle">
-  {{#if editTitle}}
+<template name="listNPO">
+  <li>{{title}}</li>
+  <li>{{locations}}</li>
+  <li>{{description}}</li>
+  <li>{{email}}</li>
+  <li>{{keywords}}</li>
+</template>
+
+
+<template name="editForm">
+  {{#if editing}}
     <input id="title" type="text" value="{{title}}"/>
-    <button class="tButton">Save</button>
-  {{else}}
-    <h1 class="title">{{title}}</h1>
-    <button class="tButton">Edit</button>
-  {{/if}}
-</template>
-
-<template name="locations">
-  {{#if editLoc}}
     <input id="locations" type="text" value="{{locations}}"/>
-    <button class="lButton">Save</button>
-  {{else}}
-    <h2 class="locations">{{locations}}</h2>
-    <button class="lButton">Edit</button>
-  {{/if}}
-</template>
-
-<template name="keywords">
-  {{#if editKey}}
+    <textview id="description" type="text" value="{{description}}"/>
+    <input id="email" type="text" value="{{email}}"/>
     <p>Please separate your tags with commas. The more tags, the easier it is for people to find you</p>
     <input id="keywords" type="text" value="{{keywords}}"/>
-    <button class="kButton">Save</button>
+    <button class="submit">Save Changes!</button>
   {{else}}
-    <span class="keywords">{{keywords}}</span>
-    <button class="kButton">Edit</button>
-  {{/if}}
-</template>
-
-<template name="description">
-  {{#if editDescrip}}
-    <textarea id="description" type="text" value="{{description}}"/>
-    <button class="dButton">Save</button>
-  {{else}}
+    <h1 class="title">{{title}}</h1>
+    <h2 class="locations">{{locations}}</h2>
     <p class="description">{{description}}</p>
-    <button class="dButton">Edit</button>
+    <h3 class="email">{{email}}</h3>
+    <span class="keywords">{{keywords}}</span>
+    <button class="edit">Edit!</button>
   {{/if}}
 </template>
 
