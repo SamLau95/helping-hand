@@ -4,6 +4,7 @@ Nonprofits = new Meteor.Collection("nonprofits");
 // Set default session values
 Session.setDefault("query", "");
 Session.setDefault("viewingNpo", false);
+Session.setDefault("editing", false);
 
 // Subscribe to nonprofit list
 Meteor.subscribe("nonprofits");
@@ -66,15 +67,13 @@ Template.nonProfitPage.events({
   }
 });
 
-Session.set("editing", false);
-
 Template.editForm.editing = function () {
   return Session.get("editing");
 }
 
 function getForm(attr, usr){
-  var NPO = Nonprofits.findOne({ user_id: usr._id})
-  if ( NPO == undefined){
+  var NPO = Nonprofits.findOne({ user_id: usr._id});
+  if ( NPO == undefined ){
     return "The" + attr + "of your organization goes here!";
   } else {
     return NPO.call(attr);

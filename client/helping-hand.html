@@ -61,21 +61,23 @@
 
 
 <template name="editForm">
-  {{#if editing}}
-    <input id="title" type="text" value="{{title}}"/>
-    <input id="locations" type="text" value="{{locations}}"/>
-    <textview id="description" type="text" value="{{description}}"/>
-    <input id="email" type="text" value="{{email}}"/>
-    <p>Please separate your tags with commas. The more tags, the easier it is for people to find you</p>
-    <input id="keywords" type="text" value="{{keywords}}"/>
-    <button class="submit">Save Changes!</button>
-  {{else}}
-    <h1 class="title">{{title}}</h1>
-    <h2 class="locations">{{locations}}</h2>
-    <p class="description">{{description}}</p>
-    <h3 class="email">{{email}}</h3>
-    <span class="keywords">{{keywords}}</span>
-    <button class="edit">Edit!</button>
+  {{#if showingEditForm}}
+    {{#if editing}}
+      <input id="title" type="text" value="{{title}}"/>
+      <input id="locations" type="text" value="{{locations}}"/>
+      <textview id="description" type="text" value="{{description}}"/>
+      <input id="email" type="text" value="{{email}}"/>
+      <p>Please separate your tags with commas. The more tags, the easier it is for people to find you</p>
+      <input id="keywords" type="text" value="{{keywords}}"/>
+      <button class="submit">Save Changes!</button>
+    {{else}}
+      <h1 class="title">{{title}}</h1>
+      <h2 class="locations">{{locations}}</h2>
+      <p class="description">{{description}}</p>
+      <h3 class="email">{{email}}</h3>
+      <span class="keywords">{{keywords}}</span>
+      <button class="edit">Edit!</button>
+    {{/if}}
   {{/if}}
 </template>
 
