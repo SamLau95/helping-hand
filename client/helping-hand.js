@@ -8,18 +8,11 @@ Session.setDefault("viewingNpo", false);
 // Subscribe to nonprofit list
 Meteor.subscribe("nonprofits");
 
-// Listen for typing in search form
-Template.searchForm.events({
-  'keyup input': function(e, t) {
-    var query = t.find('#search').value;
-    Session.set("query", query);
-    if (!(!query || 0 === query.length))
-      $('#searchWrapper').removeClass('vertalign');
-    else
-      $('#searchWrapper').addClass('vertalign');
-  }
-});
-
+// Helper for checking blank query
+var queryIsBlank = function() {
+  var query = Session.get("query");
+  return !query || 0 === query.length;
+};
 
 // Helpers for search
 var searchByKeyword = function(keyword) {
@@ -27,6 +20,18 @@ var searchByKeyword = function(keyword) {
 };
 
 var arrayCombiner = function(arr1, arr2) { return arr1.concat(arr2); };
+
+// Listen for typing in search form
+Template.searchForm.events({
+  'keyup input': function(e, t) {
+    var query = t.find('#search').value;
+    Session.set("query", query);
+    if (!queryIsBlank())
+      $('#searchWrapper').removeClass('vertalign');
+    else
+      $('#searchWrapper').addClass('vertalign');
+  }
+});
 
 // Search algorithm
 Template.npList.matches = function () {
@@ -37,8 +42,7 @@ Template.npList.matches = function () {
 
 // Results template
 Template.results.searching = function() {
-  str = Session.get("query");
-  return !(!str || 0 === str.length);
+  return !queryIsBlank() && !Session.get("viewingNpo");
 }
 
 // Search result listing
@@ -52,6 +56,12 @@ Template.npList.events({
 Template.nonProfitPage.viewingNpo = function() {
   return Session.get("viewingNpo");
 };
+
+Template.nonProfitPage.events({
+  'click #backToResults': function() {
+    Session.set('viewingNpo', false);
+  }
+});
 
 Session.set("Tedit", false);
 Session.set("Ledit", false);
