@@ -9,7 +9,6 @@ Session.setDefault "viewingNpo", false
 # Subscribe to nonprofit list
 Meteor.autorun ->
   Meteor.subscribe "nonprofits", Session.get("query")
-  return
 
 
 # Listen for typing in search form
@@ -20,7 +19,6 @@ Template.searchForm.events "keyup input": (e, t) ->
     $("#searchWrapper").removeClass "vertalign"
   else
     $("#searchWrapper").addClass "vertalign"
-  return
 
 
 # Not finding matches right now.

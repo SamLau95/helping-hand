@@ -20,9 +20,6 @@ Meteor.startup ->
         "teachers"
       ]
 
-  return
-
 Meteor.publish "nonprofits", (tag) ->
   Nonprofits.find keywords:
     $elemMatch: tag
-
