@@ -10,6 +10,6 @@ Meteor.startup(function() {
   }
 });
 
-Meteor.publish("items", function (tag) {
-  return Nonprofits.find( { "$in": [tag] } )
+Meteor.publish("nonprofits", function (tag) {
+  return Nonprofits.find( { keywords: { $elemMatch: tag }});
 })
