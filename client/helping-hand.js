@@ -5,7 +5,7 @@ Nonprofits = new Meteor.Collection("nonprofits");
 Session.setDefault("query", "");
 Session.setDefault("viewingNpo", false);
 Session.setDefault("editing", false);
-
+Session.setDefault("showingEditForm", false)
 // Subscribe to nonprofit list
 Meteor.subscribe("nonprofits");
 
@@ -32,7 +32,7 @@ Template.searchForm.events({
     else {
       $("#searchWrapper").addClass('vertalign');
       Session.set("viewingNpo", false);
-      Session.set("editForm", false);
+      Session.set("showingEditForm", false);
     }
   }
 });
@@ -46,7 +46,7 @@ Template.npList.matches = function () {
 
 // Results template
 Template.results.searching = function() {
-  return !queryIsBlank() && !Session.get("viewingNpo") && !Session.get("editForm");
+  return !queryIsBlank() && !Session.get("viewingNpo") && !Session.get("showingEditForm");
 }
 
 // Search result listing
@@ -67,6 +67,17 @@ Template.nonProfitPage.events({
   }
 });
 
+//Listener to show Edit Fields
+Template.showForm.events({
+  'click #showEdit': function (e,v) {
+    Session.set("viewingNpo",false);
+    Session.set("query", " ");
+    Session.set("showingEditForm", true);
+    $("#searchWrapper").removeClass('vertalign');
+  }
+});
+
+//EditForm fields
 Template.editForm.editing = function () {
   return Session.get("editing");
 }
@@ -78,6 +89,10 @@ function getForm(attr, usr){
   } else {
     return NPO.call(attr);
   }
+}
+
+Template.editForm.showingEditForm = function () {
+  return Session.get("showingEditForm");
 }
 
 Template.editForm.title = function () {

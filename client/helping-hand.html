@@ -7,8 +7,15 @@
   {{> searchForm}}
   {{> results}}
   {{> nonProfitPage}}
-  {{> editForm}}
+  {{> showForm}}
 </body>
+
+<template name="showForm">
+  {{#if currentUser}}
+    <p id="showEdit">  Edit Organization </p>
+    {{> editForm}}
+  {{/if}}
+</template>
 
 <template name="searchForm">
   <div class="row">
@@ -55,7 +62,7 @@
   <ul>Located: {{locations}}</ul>
   <ul>What we do: {{description}}</ul>
   <ul>Tags: {{keywords}}</ul>
-  <ul>Email: email}}</ul>
+  <ul>Email: {{email}}</ul>
   {{> contactForm }}
 </template>
 
@@ -71,10 +78,10 @@
       <input id="keywords" type="text" value="{{keywords}}"/>
       <button class="submit">Save Changes!</button>
     {{else}}
-      <h1 class="title">{{title}}</h1>
-      <h2 class="locations">{{locations}}</h2>
+      <h4 class="title">{{title}}</h1>
+      <h4 class="locations">{{locations}}</h2>
       <p class="description">{{description}}</p>
-      <h3 class="email">{{email}}</h3>
+      <h4 class="email">{{email}}</h3>
       <span class="keywords">{{keywords}}</span>
       <button class="edit">Edit!</button>
     {{/if}}
