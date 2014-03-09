@@ -31,8 +31,8 @@
 <template name="npList">
   <ul class='searchResults'>
     {{#each matches}}
-      <li>
-        <span class="searchname npo" id="{{ _id }}">{{name}}</span><br>
+      <li class="npo" id="{{ _id }}">
+        <span class="searchname">{{name}}</span><br>
         <span class='keywords'>{{keywords}}</span>
       </li>
     {{/each}}
@@ -43,7 +43,7 @@
   {{#if viewingNpo}}
     <div class='row'>
       {{> nPOName }}
-      {{> location }}
+      {{> locations }}
       {{> keywords }}
       {{> description }}
     </div>
