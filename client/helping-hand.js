@@ -4,7 +4,8 @@ Nonprofits = new Meteor.Collection("nonprofits");
 // Set default session values
 Session.setDefault("query", "");
 Session.setDefault("viewingNpo", false);
-
+Session.setDefault("editing", false);
+Session.setDefault("showingEditForm", false)
 // Subscribe to nonprofit list
 Meteor.subscribe("nonprofits");
 
@@ -27,10 +28,11 @@ Template.searchForm.events({
     var query = t.find('#search').value;
     Session.set("query", query);
     if (!queryIsBlank())
-      $('#searchWrapper').removeClass('vertalign');
+      $("#searchWrapper").removeClass('vertalign');
     else {
-      $('#searchWrapper').addClass('vertalign');
-      Session.set('viewingNpo', false);
+      $("#searchWrapper").addClass('vertalign');
+      Session.set("viewingNpo", false);
+      Session.set("showingEditForm", false);
     }
   }
 });
@@ -44,7 +46,7 @@ Template.npList.matches = function () {
 
 // Results template
 Template.results.searching = function() {
-  return !queryIsBlank() && !Session.get("viewingNpo");
+  return !queryIsBlank() && !Session.get("viewingNpo") && !Session.get("showingEditForm");
 }
 
 // Search result listing
@@ -65,40 +67,73 @@ Template.nonProfitPage.events({
   }
 });
 
-Session.set("editing", false);
+//Listener to show Edit Fields
+Template.showForm.events({
+  'click #showEdit': function (e,v) {
+    Session.set("viewingNpo",false);
+    Session.set("query", " ");
+    Session.set("showingEditForm", true);
+    $("#searchWrapper").removeClass('vertalign');
+  }
+});
 
+//EditForm fields
 Template.editForm.editing = function () {
   return Session.get("editing");
 }
 
-function getAttr(attr, usr){
-  var NPO = Nonprofits.findOne({ user_id: user._id})
-  if ( NPO == 'undefined'){
+function getForm(attr, usr){
+  var NPO = Nonprofits.findOne({ user_id: usr._id});
+  if ( NPO == undefined ){
     return "The" + attr + "of your organization goes here!";
   } else {
     return NPO.call(attr);
   }
 }
 
+Template.editForm.showingEditForm = function () {
+  return Session.get("showingEditForm");
+}
+
 Template.editForm.title = function () {
-  return getForm("title", currentUser);
+  return getForm("title", Meteor.user());
 }
 
 Template.editForm.locations = function () {
-  return getForm("locations", currentUser);
+  return getForm("locations", Meteor.user());
 }
 
 Template.editForm.keywords = function () {
-  return getForm("keywords", currentUser);
+  return getForm("keywords", Meteor.user());
 }
 
 Template.editForm.description = function () {
-  return getForm("description", currentUser);
+  return getForm("description", Meteor.user());
 }
 
 Template.editForm.email = function () {
-  return getForm("email", currentUser);
+  return getForm("email", Meteor.user());
 }
+
+Template.listNPO.title = function () {
+  return Nonprofits.findOne(Session.get("viewingNpo")).title;
+}
+
+Template.listNPO.locations = function () {
+  return Nonprofits.findOne(Session.get("viewingNpo")).location;
+}
+
+Template.listNPO.description = function () {
+  return Nonprofits.findOne(Session.get("viewingNpo")).description;
+}
+Template.listNPO.keywords = function () {
+  return Nonprofits.findOne(Session.get("viewingNpo")).keywords;
+}
+Template.listNPO.email = function () {
+  return Nonprofits.findOne(Session.get("viewingNpo")).email;
+}
+
+
 
 Template.editForm.events({
   'click .tButton': function (e,t) {
@@ -126,9 +161,9 @@ Template.contactForm.events({
   'click #sendEmail': function(e, t) {
     Meteor.call('sendEmail',
       Nonprofits.findOne(Session.get("viewingNpo")).email,
-      $('#emailFrom')[0].value,
-      $('#emailName')[0].value + " - " + $('#emailSubject')[0].value,
-      $('#emailContent')[0].value);
+      $("#emailFrom")[0].value,
+      $("#emailName")[0].value + " - " + $("#emailSubject")[0].value,
+      $("#emailContent")[0].value);
   }
 });
 
