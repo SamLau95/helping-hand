@@ -19,10 +19,23 @@
 <template name = "results">
 	{{#if noSearch}}
   {{else}}
+    {{#unless onPage}}
     <div class="row">
       <div class="twelve columns centered">
         <h1> There's a query! </h1>
       </div>
     </div>
+    {{/unless}}
+  {{/if}}
+</template>
+
+<template name = "nonProfitPage">
+  {{#if onPage}}
+  <div class='row'>
+    <h1>{{ nPOName }}</h1>
+    <h3>{{ location }}</h3>
+    <h3>{{ keywords }}</h3>
+    <h3>{{ description }}</h3>
+  </div>
   {{/if}}
 </template>
