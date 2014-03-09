@@ -18,7 +18,16 @@ if (Meteor.isClient) {
     }
   });
 
+  var pagevariable = true; // change this variable later to make page enter functionality
+
   Template.results.noSearch = function() {
     return Session.get("emptyQuery");
+  }
+  Template.results.onPage = function() {
+    return pagevariable//
+  }
+
+  Template.nonProfitPage.onPage = function() {
+    return pagevariable //change this later
   }
 }
