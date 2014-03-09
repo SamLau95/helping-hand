@@ -41,18 +41,16 @@ Template.results.searching = function() {
   return !(!str || 0 === str.length);
 }
 
-Template.results.viewingNpo = function() {
-  return Session.get("viewingNpo");
-}
+// Search result listing
+Template.npList.events({
+  'click .npo': function(e, t) {
+    Session.set('viewingNpo', e.currentTarget.id);
+  }
+});
 
 // Nonprofit viewing template
 Template.nonProfitPage.viewingNpo = function() {
   return Session.get("viewingNpo");
-}
-
-
-Template.load.item = function () {
-  return Nonprofits.find();
 }
 
 Session.set("Nedit", false);
