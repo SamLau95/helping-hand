@@ -5,6 +5,8 @@
 
 .hoverlink{color:$black; cursor:pointer; &:hover, &:active, &:focus{color:$primary-color;}}
 
+.inlined{display: inline; float:left;}
+
 #searchWrapper{@include transition-duration(0.5s);}
 .vertalign{@include translate3d(0, 200px, 0)}//margin-top:300px;}
 
@@ -39,9 +41,9 @@
   .login-link-text{
     @include transition-duration(0.3s);
     color:$black;
-    display:inline !important;
+    display:block;
     float:left !important;
-    font-size: $large;
+    font-size: $med+5;
     &:hover, &:active, &:focus{
       color:$primary-color;
     }
@@ -50,19 +52,22 @@
 
   .accounts-dialog{
     margin-left: 8px;
-    .login-close-text{
+    @extend .inlined;
+  }
+.login-close-text{
       display: none;
-      display:inline !important;
-      float:left !important;
+      @extend .inlined;
       font-size: 0px;
       color:$primary-color;
     }
-    .login-text-and-button{
+.login-form{
       font-size: $med+2;
-      display:inline !important;
-      float:left !important;
+      @extend .inlined;
     }
-  }
+#login-email-label-and-input{@extend .inlined; @extend input}
+  #login-password-label-and-input{@extend .inlined; @extend input}
+  .login-button{@extend .inlined; @extend .secondary; @extend .btn; @extend .medium; color:$white; padding-left:5px !important; padding-right:5px !important;  margin-left: 5px;
+  margin-right:5px;}
 
 #backToResults{
   font-size: $large;
@@ -73,6 +78,9 @@
 .title{
   text-align: center;
 }
+
+.additional-link-container{@extend .inlined; @extend .secondary; @extend .btn; @extend .medium; a{padding-left:5px !important; padding-right:5px !important;};  margin-left: 5px;
+  margin-right:5px;}
 
 $imglargereplacementhgt: 250px;
 
@@ -97,3 +105,6 @@ $imglargereplacementhgt: 250px;
     border: 5px dashed $white;
   }
 }
+
+
+
