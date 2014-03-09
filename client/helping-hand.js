@@ -53,37 +53,56 @@ Template.nonProfitPage.viewingNpo = function() {
   return Session.get("viewingNpo");
 };
 
-Session.set("Nedit", false);
+Session.set("Tedit", false);
 Session.set("Ledit", false);
 Session.set("Kedit", false);
 Session.set("Dedit", false);
 
 
-Template.nPOName.editName = function () {
-  return Session.get("Nedit");
+Template.nPOTitle.editTitle = function () {
+  return Session.get("Tedit");
+}
+
+Template.nPOTitle.title = function () {
+  var NPO = Nonprofits.findOne(this);
+  return NPO.title;
 }
 
 Template.locations.editLoc = function () {
   return Session.get("Ledit");
 }
 
+Template.locations.locations = function () {
+  var NPO = Nonprofits.findOne(this);
+  return NPO.location;
+}
+
 Template.keywords.editKey = function () {
   return Session.get("Kedit");
+}
+
+Template.keywords.keywords = function () {
+  var NPO = Nonprofits.findOne(this);
+  return NPO.keywords;
 }
 
 Template.description.editDescrip = function () {
   return Session.get("Dedit");
 }
 
+Template.description.description = function () {
+  var NPO = Nonprofits.findOne(this);
+  return NPO.description;
+}
 
-Template.nPOName.events({
-  'click .nButton': function (e,t) {
-    if (!Session.get("Nedit")){
-      Session.set("Nedit", true);
+Template.nPOTitle.events({
+  'click .tButton': function (e,t) {
+    if (!Session.get("Tedit")){
+      Session.set("Tedit", true);
     } else {
       var NPO = Nonprofits.findOne(t.data);
-      Nonprofits.update({_id: NPO._id}, { $set: { name: $("#name").val()}});
-      Session.set("Nedit", false);
+      Nonprofits.update({_id: NPO._id}, { $set: { title: $("#title").val()}});
+      Session.set("Tedit", false);
     }
   }
 });

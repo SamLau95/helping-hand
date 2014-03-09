@@ -3,10 +3,10 @@ Nonprofits = new Meteor.Collection('nonprofits');
 
 Meteor.startup(function() {
   if (Nonprofits.find().count() == 0) {
-    Nonprofits.insert({ name: 'Common Change', keywords: ['funding'], location: "Oakland", description: "LOREM IPSUM" });
-    Nonprofits.insert({ name: 'Partners in School Innovation',
+    Nonprofits.insert({ title: 'Common Change', keywords: ['funding'], location: "Oakland", description: "LOREM IPSUM" });
+    Nonprofits.insert({ title: 'Partners in School Innovation',
                         keywords: ['education', 'literacy'], location: "Oakland", description: "LOREM IPSUM"});
-    Nonprofits.insert({ name: 'IISME',
+    Nonprofits.insert({ title: 'IISME',
                         keywords: ['STEM', 'education', 'teachers'], location: "Oakland", description: "LOREM IPSUM" });
   }
 });

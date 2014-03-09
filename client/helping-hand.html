@@ -42,7 +42,7 @@
 <template name="nonProfitPage">
   {{#if viewingNpo}}
     <div class='row'>
-      {{> nPOName }}
+      {{> nPOTitle}}
       {{> locations }}
       {{> keywords }}
       {{> description }}
@@ -50,13 +50,14 @@
   {{/if}}
 </template>
 
-<template name="nPOName">
-  {{#if editName}}
-    <input id="name" type="text" value="{{name}}"/>
-    <button class="nButton">Save</button>
+<template name="nPOTitle">
+  {{#if editTitle}}
+    <input id="title" type="text" value="{{title}}"/>
+    <button class="tButton">Save</button>
   {{else}}
-    <h1 class="name">{{name}}</h1>
-    <button class="nButton">Edit</button>
+    <h1> hello </h1>
+    <h1 class="title">{{title}}</h1>
+    <button class="tButton">Edit</button>
   {{/if}}
 </template>
 
