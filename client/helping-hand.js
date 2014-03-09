@@ -6,6 +6,8 @@ Session.setDefault("query", "");
 Session.setDefault("viewingNpo", false);
 Session.setDefault("editing", false);
 Session.setDefault("showingEditForm", false)
+Session.set("loading", .5);
+
 // Subscribe to nonprofit list
 Meteor.subscribe("nonprofits");
 
@@ -15,30 +17,46 @@ var queryIsBlank = function() {
   return !query || 0 === query.length;
 };
 
-// Helpers for search
+// Search algorithm
 var searchByKeyword = function(keyword) {
-  return Nonprofits.find({'keywords': keyword.toLowerCase()}).fetch();
+  var re = new RegExp('.*' + keyword + '.*', 'i');
+  return Nonprofits.find({$or: [{'keywords': keyword.toLowerCase()},
+                                {'title': re },
+                                {'locations': re}]}).fetch();
 };
 
 var arrayCombiner = function(arr1, arr2) { return arr1.concat(arr2); };
 
+var interval;
+var timeLeft = function() {
+  var clock = Session.get("loading");
+  console.log(clock);
+  Session.set("loading", clock - .5);
+  if (clock < 0)
+    Meteor.clearInterval(interval);
+};
+
+
 // Listen for typing in search form
 Template.searchForm.events({
   'keyup input': function(e, t) {
-    var query = t.find('#search').value;
-    Session.set("query", query);
-    if (!queryIsBlank())
-      $("#searchWrapper").removeClass('vertalign');
-    else {
-      $("#searchWrapper").addClass('vertalign');
+    if (e.keyCode === 32 || e.keyCode === 13 || e.keyCode === 8) {
+      var query = t.find('#search').value;
+      Session.set("query", query);
+      if (!queryIsBlank())
+        $("#searchWrapper").removeClass('vertalign');
+      else
+        $("#searchWrapper").addClass('vertalign');
+
+      interval = Meteor.setInterval(timeLeft, 500);
+      Session.set("viewingNpo", false);
+      Session.set("showingEditForm", false);
     }
-    Session.set("viewingNpo", false);
-    Session.set("showingEditForm", false);
   }
 });
 
-// Search algorithm
-Template.npList.matches = function () {
+// Search implementation
+Template.npList.matches = function() {
   var searchTerms = Session.get("query").split(/\s+/);
   return _.reduce(_.map(searchTerms, searchByKeyword),
                   arrayCombiner);
@@ -48,6 +66,10 @@ Template.npList.matches = function () {
 Template.results.searching = function() {
   return !queryIsBlank() && !Session.get("viewingNpo") && !Session.get("showingEditForm");
 }
+
+Template.results.loading = function() {
+  return Session.get('loading') > 0;
+};
 
 // Search result listing
 Template.npList.events({
