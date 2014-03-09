@@ -71,9 +71,9 @@ Template.editForm.editing = function () {
   return Session.get("editing");
 }
 
-function getAttr(attr, usr){
-  var NPO = Nonprofits.findOne({ user_id: user._id})
-  if ( NPO == 'undefined'){
+function getForm(attr, usr){
+  var NPO = Nonprofits.findOne({ user_id: usr._id})
+  if ( NPO == undefined){
     return "The" + attr + "of your organization goes here!";
   } else {
     return NPO.call(attr);
@@ -81,24 +81,44 @@ function getAttr(attr, usr){
 }
 
 Template.editForm.title = function () {
-  return getForm("title", currentUser);
+  return getForm("title", Meteor.user());
 }
 
 Template.editForm.locations = function () {
-  return getForm("locations", currentUser);
+  return getForm("locations", Meteor.user());
 }
 
 Template.editForm.keywords = function () {
-  return getForm("keywords", currentUser);
+  return getForm("keywords", Meteor.user());
 }
 
 Template.editForm.description = function () {
-  return getForm("description", currentUser);
+  return getForm("description", Meteor.user());
 }
 
 Template.editForm.email = function () {
-  return getForm("email", currentUser);
+  return getForm("email", Meteor.user());
 }
+
+Template.listNPO.title = function () {
+  return Nonprofits.findOne(Session.get("viewingNpo")).title;
+}
+
+Template.listNPO.locations = function () {
+  return Nonprofits.findOne(Session.get("viewingNpo")).location;
+}
+
+Template.listNPO.description = function () {
+  return Nonprofits.findOne(Session.get("viewingNpo")).description;
+}
+Template.listNPO.keywords = function () {
+  return Nonprofits.findOne(Session.get("viewingNpo")).keywords;
+}
+Template.listNPO.email = function () {
+  return Nonprofits.findOne(Session.get("viewingNpo")).email;
+}
+
+
 
 Template.editForm.events({
   'click .tButton': function (e,t) {

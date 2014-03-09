@@ -7,9 +7,7 @@
   {{> searchForm}}
   {{> results}}
   {{> nonProfitPage}}
-  {{#if currentUser}}
-    {{> editForm}}
-  {{/if}}
+  {{> editForm}}
 </body>
 
 <template name="searchForm">
@@ -53,11 +51,12 @@
 </template>
 
 <template name="listNPO">
-  <li>{{title}}</li>
-  <li>{{locations}}</li>
-  <li>{{description}}</li>
-  <li>{{email}}</li>
-  <li>{{keywords}}</li>
+  <ul>Name: {{title}}</ul>
+  <ul>Located: {{locations}}</ul>
+  <ul>What we do: {{description}}</ul>
+  <ul>Tags: {{keywords}}</ul>
+  <ul>Email: email}}</ul>
+  {{> contactForm }}
 </template>
 
 
