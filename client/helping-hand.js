@@ -55,5 +55,3 @@ Template.npList.events({
     Session.set('viewingNpo', e.currentTarget.id);
   }
 });
-
-
