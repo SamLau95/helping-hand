@@ -3,6 +3,10 @@
 
 .searchform{width:100%; height:30px; font-size:$med; margin-top:10px; margin-bottom:5px;}
 
+.hoverlink{color:$black; cursor:pointer; &:hover, &:active, &:focus{color:$primary-color;}}
+
+.inlined{display: inline; float:left;}
+
 #searchWrapper{@include transition-duration(0.5s);}
 .vertalign{@include translate3d(0, 200px, 0)}//margin-top:300px;}
 
@@ -29,13 +33,17 @@
 }
 
 .login-link-and-dropdown-list{
-  position:absolute;
+  //position:absolute;
   left:5px;
   cursor: pointer;
+  display:inline !important;
+  float:left !important;
   .login-link-text{
     @include transition-duration(0.3s);
     color:$black;
-    font-size: $large;
+    display:block;
+    float:left !important;
+    font-size: $med+5;
     &:hover, &:active, &:focus{
       color:$primary-color;
     }
@@ -44,12 +52,59 @@
 
   .accounts-dialog{
     margin-left: 8px;
-    .login-close-text{
+    @extend .inlined;
+  }
+.login-close-text{
       display: none;
+      @extend .inlined;
       font-size: 0px;
       color:$primary-color;
     }
-    .login-text-and-button{
+.login-form{
       font-size: $med+2;
+      @extend .inlined;
     }
+#login-email-label-and-input{@extend .inlined; @extend input}
+  #login-password-label-and-input{@extend .inlined; @extend input}
+  .login-button{@extend .inlined; @extend .secondary; @extend .btn; @extend .medium; color:$white; padding-left:5px !important; padding-right:5px !important;  margin-left: 5px;
+  margin-right:5px;}
+
+#backToResults{
+  font-size: $large;
+  text-align: left;
+  @extend .hoverlink;
+}
+
+.title{
+  text-align: center;
+}
+
+.additional-link-container{@extend .inlined; @extend .secondary; @extend .btn; @extend .medium; a{padding-left:5px !important; padding-right:5px !important;};  margin-left: 5px;
+  margin-right:5px;}
+
+$imglargereplacementhgt: 250px;
+
+.imgreplacementlrg{
+  display:block;
+  background: $primary-color;//rgb(255,117,117);
+  text-align: center;
+  overflow:hidden;
+  font-size: $xlarge;
+  color: $white;
+  height:$imglargereplacementhgt;
+  line-height:$imglargereplacementhgt;
+  .repson{
+    margin:0 auto;
+    margin-top: 10px;
+    height: $imglargereplacementhgt - 20px;
+    width: 97%;
+    line-height: $imglargereplacementhgt - 20px;
+    font-size: $xlarge;
+    color: $white;
+    text-align: center;
+    border: 5px dashed $white;
   }
+}
+
+
+
