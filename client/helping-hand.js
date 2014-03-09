@@ -28,8 +28,10 @@ Template.searchForm.events({
     Session.set("query", query);
     if (!queryIsBlank())
       $('#searchWrapper').removeClass('vertalign');
-    else
+    else {
       $('#searchWrapper').addClass('vertalign');
+      Session.set('viewingNpo', false);
+    }
   }
 });
 
@@ -64,29 +66,6 @@ Template.nonProfitPage.events({
 });
 
 Session.set("editing", false);
-
-
-Template.listNPO.title = function () {
-  var NPO = Nonprofits.findOne(this);
-  return NPO.title;
-}
-
-
-Template.listNPO.locations = function () {
-  var NPO = Nonprofits.findOne(this);
-  return NPO.location;
-}
-
-Template.listNPO.keywords = function () {
-  var NPO = Nonprofits.findOne(this);
-  return NPO.keywords;
-}
-
-
-Template.listNPO.description = function () {
-  var NPO = Nonprofits.findOne(this);
-  return NPO.description;
-}
 
 Template.editForm.editing = function () {
   return Session.get("editing");
@@ -140,6 +119,16 @@ Template.editForm.events({
         Session.set("editing", false); 
       }
     }
+  }
+});
+
+Template.contactForm.events({
+  'click #sendEmail': function(e, t) {
+    Meteor.call('sendEmail',
+      Nonprofits.findOne(Session.get("viewingNpo")).email,
+      $('#emailFrom')[0].value,
+      $('#emailName')[0].value + " - " + $('#emailSubject')[0].value,
+      $('#emailContent')[0].value);
   }
 });
 

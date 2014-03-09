@@ -35,7 +35,7 @@
   <ul class='searchResults'>
     {{#each matches}}
       <li class="npo" id="{{ _id }}">
-        <span class="searchname">{{name}}</span><br>
+        <span class="searchname">{{title}}</span><br>
         <span class='searchdescription'>{{description}}</span><br>
         <span class='keywords pull_right'>{{keywords}}</span><br>
       </li>
@@ -51,7 +51,6 @@
     </div>
   {{/if}}
 </template>
-
 
 <template name="listNPO">
   <li>{{title}}</li>
@@ -78,5 +77,28 @@
     <h3 class="email">{{email}}</h3>
     <span class="keywords">{{keywords}}</span>
     <button class="edit">Edit!</button>
+  {{/if}}
+</template>
+
+<template name="contactForm">
+  {{#if hasSentEmail}}
+  
+  {{else}}
+    <h3>Send an email!</h3>
+    <div class="field">
+      <input type="text" class="narrow input" id="emailName" placeholder="Name">
+    </div>
+    <div class="field">
+      <input type="text" class="narrow input" id="emailFrom" placeholder="Email">
+    </div>
+    <div class="field">
+      <input type="text" class="wide input" id="emailSubject" placeholder="Subject">
+    </div>
+    <div class="field">
+      <textarea class="input textarea" id="emailContent" placeholder="Content"></textarea>
+    </div>
+    <div class="large secondary btn icon-right entypo icon-mail">
+      <a href="#" id="sendEmail">Send!</a>
+    </div>
   {{/if}}
 </template>
