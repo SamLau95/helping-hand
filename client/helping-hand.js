@@ -57,6 +57,12 @@ Template.nonProfitPage.viewingNpo = function() {
   return Session.get("viewingNpo");
 };
 
+Template.nonProfitPage.events({
+  'click #backToResults': function() {
+    Session.set('viewingNpo', false);
+  }
+});
+
 Session.set("Nedit", false);
 Session.set("Ledit", false);
 Session.set("Kedit", false);
