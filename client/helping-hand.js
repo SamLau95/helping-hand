@@ -31,9 +31,9 @@ Template.searchForm.events({
       $("#searchWrapper").removeClass('vertalign');
     else {
       $("#searchWrapper").addClass('vertalign');
-      Session.set("viewingNpo", false);
-      Session.set("showingEditForm", false);
     }
+    Session.set("viewingNpo", false);
+    Session.set("showingEditForm", false);
   }
 });
 
@@ -71,7 +71,7 @@ Template.nonProfitPage.events({
 Template.showForm.events({
   'click #showEdit': function (e,v) {
     Session.set("viewingNpo",false);
-    Session.set("query", " ");
+    Session.set("query", "");
     Session.set("showingEditForm", true);
     $("#searchWrapper").removeClass('vertalign');
   }
@@ -83,11 +83,11 @@ Template.editForm.editing = function () {
 }
 
 function getForm(attr, usr){
-  var NPO = Nonprofits.findOne({ user_id: usr._id});
-  if ( NPO == undefined ){
-    return "The" + attr + "of your organization goes here!";
+  var NPO = Nonprofits.findOne({ owner: usr._id });
+  if ( NPO == undefined ) {
+    return "The " + attr + " of your organization goes here!";
   } else {
-    return NPO.call(attr);
+    return NPO[attr];
   }
 }
 
@@ -136,23 +136,22 @@ Template.listNPO.email = function () {
 
 
 Template.editForm.events({
-  'click .tButton': function (e,t) {
+  'click .edit': function (e,t) {
     if (!Session.get("editing")){
       Session.set("editing", true);
     } else {
-      var NPO = Nonprofits.findOne({user_id: currentUser._id});
-      if (NPO == 'undefined') {
-        title = $("#title").val();
-        location: $("#locations").val();
-        description = $("#description").val();
-        email = $("#email").val();
-        keywords = $("keywords").val().split(/,\s+/);
-        Nonprofits.insert({ title: title, keywords: keywords, location: location, description: description, email: email, current_id: currentUser._id });
-        Session.set("editing", false); 
+      var NPO = Nonprofits.findOne({owner: Meteor.user()._id});
+      title = $("#title").val();
+      location: $("#locations").val();
+      description = $("#description").val();
+      email = $("#email").val();
+      keywords = $("#keywords").val().split(/,\s*/);
+      if (NPO == undefined) {
+        Nonprofits.insert({ title: title, keywords: keywords, location: location, description: description, email: email, owner: Meteor.user()._id });
       } else {
         Nonprofits.update({_id: NPO._id}, { $set: { title: title, keywords: keywords, location: location, description: description, email: email }});
-        Session.set("editing", false); 
       }
+      Session.set("editing", false); 
     }
   }
 });
