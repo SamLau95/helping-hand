@@ -8,5 +8,5 @@ insecure
 preserve-inputs
 underscore
 accounts-ui-unstyled
-accounts-google
-accounts-facebook
+accounts-base
+accounts-password
