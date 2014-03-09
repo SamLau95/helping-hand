@@ -1,5 +1,5 @@
 // Seed data
-var Nonprofits = new Meteor.Collection('nonprofits');
+Nonprofits = new Meteor.Collection('nonprofits');
 
 Meteor.startup(function() {
   if (Nonprofits.find().count() == 0) {
