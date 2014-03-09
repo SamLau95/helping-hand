@@ -1,5 +1,4 @@
-
-var NonProfits = new Meteor.Collection('nonprofits');
+Nonprofits = new Meteor.Collection('nonprofits');
 
 function isEmpty(str) {
   return (!str || 0 === str.length);
@@ -8,6 +7,8 @@ function isEmpty(str) {
 if (Meteor.isClient) {
   Session.set("query", "");
   Session.set("emptyQuery", true);
+  console.log(Nonprofits.find().fetch());
+
   Template.searchForm.events({
     'keyup input': function(e, t) {
       query = t.find('#search').value;
