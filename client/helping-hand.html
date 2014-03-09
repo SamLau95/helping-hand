@@ -30,11 +30,15 @@
 
 <template name="results">
   {{#if searching}}
-    <div class="row">
-      <div class="twelve columns centered">
-        {{> npList}}
+    {{#if loading}}
+      <p>Loading search results...</p>
+    {{ else }}
+      <div class="row">
+        <div class="twelve columns centered">
+          {{> npList}}
+        </div>
       </div>
-    </div>
+    {{/if}}
   {{/if}}
 </template>
 
