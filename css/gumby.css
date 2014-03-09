@@ -1691,11 +1691,11 @@ table.rounded thead th, table.rounded thead td, table.rounded caption + tbody tr
 .vertalign { -webkit-transform: translate3d(0, 200px, 0); -moz-transform: translate3d(0, 200px, 0); -ms-transform: translate3d(0, 200px, 0); -o-transform: translate3d(0, 200px, 0); transform: translate3d(0, 200px, 0); }
 
 .searchResults { list-style: none; }
-.searchResults li { display: block; height: 100px; width: 100%; padding: 10px; cursor: pointer; -webkit-transition-duration: 0.3s; -moz-transition-duration: 0.3s; -o-transition-duration: 0.3s; transition-duration: 0.3s; }
+.searchResults li { display: block; width: 100%; padding: 10px; cursor: pointer; -webkit-transition-duration: 0.3s; -moz-transition-duration: 0.3s; -o-transition-duration: 0.3s; transition-duration: 0.3s; }
 .searchResults li:hover, .searchResults li:active, .searchResults li:focus { background: #f2f2f2; }
 .searchResults li:hover .searchname, .searchResults li:active .searchname, .searchResults li:focus .searchname { color: #4ba547; }
 .searchResults li .searchname { font-size: 26px; }
-.searchResults li .keywords { font-size: 18px; }
+.searchResults li .keywords { font-size: 14px; text-align: right; }
 
 .login-link-and-dropdown-list { position: absolute; left: 5px; cursor: pointer; }
 .login-link-and-dropdown-list .login-link-text { -webkit-transition-duration: 0.3s; -moz-transition-duration: 0.3s; -o-transition-duration: 0.3s; transition-duration: 0.3s; color: black; font-size: 26px; }

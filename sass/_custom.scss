@@ -10,7 +10,6 @@
   list-style:none;
   li{
     display:block;
-    height:100px;
     width:100%;
     padding:10px;
     cursor:pointer;
@@ -23,7 +22,8 @@
       font-size: $large;
     }
     .keywords{
-      font-size: $med;
+      font-size: $small+4;
+      text-align:right;
     }
   };
 }
