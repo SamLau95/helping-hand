@@ -49,41 +49,41 @@
 
 <template name="nPOName">
   {{#if editName}}
-    <input type="text" value="{{name}}"/>
-    <button id="nButton">Save</button>
+    <input id="name" type="text" value="{{name}}"/>
+    <button class="nButton">Save</button>
   {{else}}
     <h1 class="name">{{name}}</h1>
-    <button id="nButton">Edit</button>
+    <button class="nButton">Edit</button>
   {{/if}}
 </template>
 
-<template name="location">
+<template name="locations">
   {{#if editLoc}}
-    <input type="text" value="{{location}}"/>
-    <button id="lButton">Save</button>
+    <input id="locations" type="text" value="{{locations}}"/>
+    <button class="lButton">Save</button>
   {{else}}
-    <h2 class="location">{{location}}</h2>
-    <button id="lButton">Edit</button>
+    <h2 class="locations">{{locations}}</h2>
+    <button class="lButton">Edit</button>
   {{/if}}
 </template>
 
 <template name="keywords">
   {{#if editKey}}
     <p>Please separate your tags with commas. The more tags, the easier it is for people to find you</p>
-    <input type="text" value="{{keywords}}"/>
-    <button id="kButton">Save</button>
+    <input id="keywords" type="text" value="{{keywords}}"/>
+    <button class="kButton">Save</button>
   {{else}}
     <span class="keywords">{{keywords}}</span>
-    <button id="kButton">Edit</button>
+    <button class="kButton">Edit</button>
   {{/if}}
 </template>
 
 <template name="description">
   {{#if editDescrip}}
-    <input type="text" value="{{description}}"/>
-    <button id="dButton">Save</button>
+    <textarea id="description" type="text" value="{{description}}"/>
+    <button class="dButton">Save</button>
   {{else}}
     <p class="description">{{description}}</p>
-    <button id="dButton">Edit</button>
+    <button class="dButton">Edit</button>
   {{/if}}
 </template>

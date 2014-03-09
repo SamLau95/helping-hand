@@ -53,6 +53,10 @@ Template.nonProfitPage.viewingNpo = function() {
   return Session.get("viewingNpo");
 }
 
+Template.load.item = function () {
+    return Nonprofits.find();
+  }
+
 Session.set("Nedit", false);
 Session.set("Ledit", false);
 Session.set("Kedit", false);
@@ -63,7 +67,7 @@ Template.nPOName.editName = function () {
   return Session.get("Nedit");
 }
 
-Template.location.editLoc = function () {
+Template.locations.editLoc = function () {
   return Session.get("Ledit");
 }
 
@@ -77,45 +81,48 @@ Template.description.editDescrip = function () {
 
 
 Template.nPOName.events({
-  'click #nButton': function (e,t) {
-    console.log("hello");
+  'click .nButton': function (e,t) {
     if (!Session.get("Nedit")){
       Session.set("Nedit", true);
     } else {
-      Nonprofits.update(t.data, { $set: {name: e.currentTarget.value}});
+      var NPO = Nonprofits.findOne(t.data);
+      Nonprofits.update({_id: NPO._id}, { $set: { name: $("#name").val()}});
       Session.set("Nedit", false);
     }
   }
 });
 
-Template.location.events({
-  'click #lButton': function (e,t) {
+Template.locations.events({
+  'click .lButton': function (e,t) {
     if (!Session.get("Ledit")){
       Session.set("Ledit", true);
     } else {
-      Nonprofits.update(t.data, { $set: {location: e.currentTarget.value}});
+      var NPO = Nonprofits.findOne(t.data);
+      Nonprofits.update({_id: NPO._id}, { $set: {locations: $("#locations").val()}});
       Session.set("Ledit", false);
     }
   }
 });
 
 Template.keywords.events({
-  'click #kButton': function (e,t) {
+  'click .kButton': function (e,t) {
     if (!Session.get("Kedit")){
       Session.set("Kedit", true);
     } else {
-      Nonprofits.update(t.data, { $set: {keywords: e.currentTarget.value}});
+      var NPO = Nonprofits.findOne(t.data);
+      Nonprofits.update({_id: NPO._id}, { $set: {keywords: $("#keywords").val().split(",")}});
       Session.set("Kedit", false);
     }
   }
 });
 
 Template.description.events({
-  'click #dButton': function (e,t) {
+  'click .dButton': function (e,t) {
     if (!Session.get("Dedit")){
       Session.set("Dedit", true);
     } else {
-      Nonprofits.update(t.data, { $set: {description: e.currentTarget.value}});
+      var NPO = Nonprofits.findOne(t.data);
+      Nonprofits.update({_id: NPO._id}, { $set: {description: $("#description").val()}});
       Session.set("Dedit", false);
     }
   }
