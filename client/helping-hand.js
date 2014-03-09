@@ -28,7 +28,7 @@ Template.npList.matches = function () {
 // Results template
 Template.results.searching = function() {
   str = Session.get("query");
-  return (!str || 0 === str.length);
+  return !(!str || 0 === str.length);
 }
 
 Template.results.viewingNpo = function() {
