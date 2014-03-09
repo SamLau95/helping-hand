@@ -53,10 +53,6 @@ Template.nonProfitPage.viewingNpo = function() {
   return Session.get("viewingNpo");
 }
 
-Template.load.item = function () {
-    return Nonprofits.find();
-  }
-
 Session.set("Nedit", false);
 Session.set("Ledit", false);
 Session.set("Kedit", false);
