@@ -51,7 +51,7 @@ Template.npList.events({
 // Nonprofit viewing template
 Template.nonProfitPage.viewingNpo = function() {
   return Session.get("viewingNpo");
-}
+};
 
 Session.set("Nedit", false);
 Session.set("Ledit", false);
