@@ -1,5 +1,5 @@
 // Make Nonprofits collection visible
-Nonprofits = new Meteor.Collection("nonprofits");
+var Nonprofits = new Meteor.Collection("nonprofits");
 
 // Set default session values
 Session.setDefault("query", "");
