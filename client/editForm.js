@@ -51,7 +51,7 @@ Template.listNPO.title = function () {
 }
 
 Template.listNPO.locations = function () {
-  return Nonprofits.findOne(Session.get("viewingNpo")).location;
+  return Nonprofits.findOne(Session.get("viewingNpo")).locations;
 }
 
 Template.listNPO.description = function () {
