@@ -73,3 +73,27 @@
 .title{
   text-align: center;
 }
+
+$imglargereplacementhgt: 250px;
+
+.imgreplacementlrg{
+  display:block;
+  background: $primary-color;//rgb(255,117,117);
+  text-align: center;
+  overflow:hidden;
+  font-size: $xlarge;
+  color: $white;
+  height:$imglargereplacementhgt;
+  line-height:$imglargereplacementhgt;
+  .repson{
+    margin:0 auto;
+    margin-top: 10px;
+    height: $imglargereplacementhgt - 20px;
+    width: 97%;
+    line-height: $imglargereplacementhgt - 20px;
+    font-size: $xlarge;
+    color: $white;
+    text-align: center;
+    border: 5px dashed $white;
+  }
+}

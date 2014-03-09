@@ -1711,3 +1711,6 @@ table.rounded thead th, table.rounded thead td, table.rounded caption + tbody tr
 #backToResults { font-size: 26px; text-align: left; }
 
 .title { text-align: center; }
+
+.imgreplacementlrg { display: block; background: #4ba547; text-align: center; overflow: hidden; font-size: 42px; color: white; height: 250px; line-height: 250px; }
+.imgreplacementlrg .repson { margin: 0 auto; margin-top: 10px; height: 230px; width: 97%; line-height: 230px; font-size: 42px; color: white; text-align: center; border: 5px dashed white; }
