@@ -11,6 +11,7 @@ Meteor.startup(function() {
   }
 });
 
-Meteor.publish("nonprofits", function (tag) {
-  return Nonprofits.find( { keywords: { $elemMatch: tag }});
-})
+// Publish nonprofits
+Meteor.publish("nonprofits", function() {
+  return Nonprofits.find();
+});

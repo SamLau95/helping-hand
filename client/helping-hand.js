@@ -1,5 +1,5 @@
 // Make Nonprofits collection visible
-Nonprofits = new Meteor.Collection("nonprofits")
+Nonprofits = new Meteor.Collection("nonprofits");
 
 // Set default session values
 Session.setDefault("query", "");
@@ -11,7 +11,7 @@ Meteor.subscribe("nonprofits");
 // Listen for typing in search form
 Template.searchForm.events({
   'keyup input': function(e, t) {
-    query = t.find('#search').value;
+    var query = t.find('#search').value;
     Session.set("query", query);
     if (!(!query || 0 === query.length))
       $('#searchWrapper').removeClass('vertalign');
@@ -20,9 +20,19 @@ Template.searchForm.events({
   }
 });
 
-// Not finding matches right now.
+
+// Helpers for search
+var searchByKeyword = function(keyword) {
+  return Nonprofits.find({'keywords': kw}).fetch();
+};
+
+var arrayCombiner = function(arr1, arr2) { return a1.concat(a2); };
+
+// Search algorithm
 Template.npList.matches = function () {
-  return Nonprofits.find();
+  var searchTerms = Session.get("query").split(/\s+/);
+  return _.reduce(_.map(searchTerms, searchByKeyword),
+                  arrayCombiner);
 }
 
 // Results template
