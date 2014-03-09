@@ -26,11 +26,9 @@ var searchByKeyword = function(keyword) {
   return Nonprofits.find({'keywords': kw}).fetch();
 };
 
-var arrayCombiner = function(arr1, arr2) {
-  return a1.concat(a2);
-};
+var arrayCombiner = function(arr1, arr2) { return a1.concat(a2); };
 
-// Not finding matches right now.
+// Search algorithm
 Template.npList.matches = function () {
   var searchTerms = Session.get("query").split(/\s+/);
   return _.reduce(_.map(searchTerms, searchByKeyword),
