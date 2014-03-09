@@ -27,3 +27,29 @@
     }
   };
 }
+
+.login-link-and-dropdown-list{
+  position:absolute;
+  left:5px;
+  cursor: pointer;
+  .login-link-text{
+    @include transition-duration(0.3s);
+    color:$black;
+    font-size: $large;
+    &:hover, &:active, &:focus{
+      color:$primary-color;
+    }
+  }
+}
+
+  .accounts-dialog{
+    margin-left: 8px;
+    .login-close-text{
+      display: none;
+      font-size: 0px;
+      color:$primary-color;
+    }
+    .login-text-and-button{
+      font-size: $med+2;
+    }
+  }

@@ -1696,3 +1696,11 @@ table.rounded thead th, table.rounded thead td, table.rounded caption + tbody tr
 .searchResults li:hover .searchname, .searchResults li:active .searchname, .searchResults li:focus .searchname { color: #4ba547; }
 .searchResults li .searchname { font-size: 26px; }
 .searchResults li .keywords { font-size: 18px; }
+
+.login-link-and-dropdown-list { position: absolute; left: 5px; cursor: pointer; }
+.login-link-and-dropdown-list .login-link-text { -webkit-transition-duration: 0.3s; -moz-transition-duration: 0.3s; -o-transition-duration: 0.3s; transition-duration: 0.3s; color: black; font-size: 26px; }
+.login-link-and-dropdown-list .login-link-text:hover, .login-link-and-dropdown-list .login-link-text:active, .login-link-and-dropdown-list .login-link-text:focus { color: #4ba547; }
+
+.accounts-dialog { margin-left: 8px; }
+.accounts-dialog .login-close-text { display: none; font-size: 0px; color: #4ba547; }
+.accounts-dialog .login-text-and-button { font-size: 20px; }
