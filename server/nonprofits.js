@@ -7,7 +7,7 @@ Meteor.startup(function() {
     Nonprofits.insert({ name: 'Partners in School Innovation',
                         keywords: ['education', 'literacy']});
     Nonprofits.insert({ name: 'IISME',
-                        keywords: ['STEM', 'education', 'teachers'] });
+                        keywords: ['stem', 'education', 'teachers'] });
   }
 });
 
