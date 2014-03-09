@@ -100,7 +100,7 @@ Template.editForm.title = function () {
 }
 
 Template.editForm.locations = function () {
-  return getForm("locations", Meteor.user());
+  return getForm("location", Meteor.user());
 }
 
 Template.editForm.keywords = function () {
