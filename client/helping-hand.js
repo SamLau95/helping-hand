@@ -3,10 +3,10 @@ Nonprofits = new Meteor.Collection("nonprofits");
 
 // Set default session values
 Session.setDefault("query", "");
-Session.setDefault("loading", 1.0);
 Session.setDefault("viewingNpo", false);
 Session.setDefault("editing", false);
 Session.setDefault("showingEditForm", false)
+Session.set("loading", .5);
 // Subscribe to nonprofit list
 Meteor.subscribe("nonprofits");
 
@@ -27,8 +27,13 @@ var searchByKeyword = function(keyword) {
 var arrayCombiner = function(arr1, arr2) { return arr1.concat(arr2); };
 
 var timeLeft = function() {
-  
+  var clock = Session.get("clock");
+  Session.set("loading", clock - .3);
+  if (clock < 0)
+    Meteor.clearInterval(interval);
 };
+
+var interval = Meteor.setInterval(timeLeft, 300);
 
 // Listen for typing in search form
 Template.searchForm.events({
