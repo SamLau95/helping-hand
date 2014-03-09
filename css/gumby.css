@@ -1686,6 +1686,9 @@ table.rounded thead th, table.rounded thead td, table.rounded caption + tbody tr
 
 .searchform { width: 100%; height: 30px; font-size: 18px; margin-top: 10px; margin-bottom: 5px; }
 
+.hoverlink, #backToResults { color: black; cursor: pointer; }
+.hoverlink:hover, #backToResults:hover, .hoverlink:active, #backToResults:active, .hoverlink:focus, #backToResults:focus { color: #4ba547; }
+
 #searchWrapper { -webkit-transition-duration: 0.5s; -moz-transition-duration: 0.5s; -o-transition-duration: 0.5s; transition-duration: 0.5s; }
 
 .vertalign { -webkit-transform: translate3d(0, 200px, 0); -moz-transform: translate3d(0, 200px, 0); -ms-transform: translate3d(0, 200px, 0); -o-transform: translate3d(0, 200px, 0); transform: translate3d(0, 200px, 0); }
@@ -1697,10 +1700,14 @@ table.rounded thead th, table.rounded thead td, table.rounded caption + tbody tr
 .searchResults li .searchname { font-size: 26px; }
 .searchResults li .keywords { font-size: 14px; text-align: right; }
 
-.login-link-and-dropdown-list { position: absolute; left: 5px; cursor: pointer; }
-.login-link-and-dropdown-list .login-link-text { -webkit-transition-duration: 0.3s; -moz-transition-duration: 0.3s; -o-transition-duration: 0.3s; transition-duration: 0.3s; color: black; font-size: 26px; }
+.login-link-and-dropdown-list { left: 5px; cursor: pointer; display: inline !important; float: left !important; }
+.login-link-and-dropdown-list .login-link-text { -webkit-transition-duration: 0.3s; -moz-transition-duration: 0.3s; -o-transition-duration: 0.3s; transition-duration: 0.3s; color: black; display: inline !important; float: left !important; font-size: 26px; }
 .login-link-and-dropdown-list .login-link-text:hover, .login-link-and-dropdown-list .login-link-text:active, .login-link-and-dropdown-list .login-link-text:focus { color: #4ba547; }
 
 .accounts-dialog { margin-left: 8px; }
-.accounts-dialog .login-close-text { display: none; font-size: 0px; color: #4ba547; }
-.accounts-dialog .login-text-and-button { font-size: 20px; }
+.accounts-dialog .login-close-text { display: none; display: inline !important; float: left !important; font-size: 0px; color: #4ba547; }
+.accounts-dialog .login-text-and-button { font-size: 20px; display: inline !important; float: left !important; }
+
+#backToResults { font-size: 26px; text-align: left; }
+
+.title { text-align: center; }

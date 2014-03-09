@@ -3,6 +3,8 @@
 
 .searchform{width:100%; height:30px; font-size:$med; margin-top:10px; margin-bottom:5px;}
 
+.hoverlink{color:$black; cursor:pointer; &:hover, &:active, &:focus{color:$primary-color;}}
+
 #searchWrapper{@include transition-duration(0.5s);}
 .vertalign{@include translate3d(0, 200px, 0)}//margin-top:300px;}
 
@@ -29,12 +31,16 @@
 }
 
 .login-link-and-dropdown-list{
-  position:absolute;
+  //position:absolute;
   left:5px;
   cursor: pointer;
+  display:inline !important;
+  float:left !important;
   .login-link-text{
     @include transition-duration(0.3s);
     color:$black;
+    display:inline !important;
+    float:left !important;
     font-size: $large;
     &:hover, &:active, &:focus{
       color:$primary-color;
@@ -46,10 +52,24 @@
     margin-left: 8px;
     .login-close-text{
       display: none;
+      display:inline !important;
+      float:left !important;
       font-size: 0px;
       color:$primary-color;
     }
     .login-text-and-button{
       font-size: $med+2;
+      display:inline !important;
+      float:left !important;
     }
   }
+
+#backToResults{
+  font-size: $large;
+  text-align: left;
+  @extend .hoverlink;
+}
+
+.title{
+  text-align: center;
+}
