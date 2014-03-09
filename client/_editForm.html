@@ -1,21 +1,42 @@
-
 <template name="editForm">
   {{#if showingEditForm}}
-    {{#if editing}}
-      <input id="title" type="text" value="{{title}}"/>
-      <input id="locations" type="text" value="{{locations}}"/>
-      <textview id="description" type="text" value="{{description}}"/>
-      <input id="email" type="text" value="{{email}}"/>
-      <p>Please separate your tags with commas. The more tags, the easier it is for people to find you</p>
-      <input id="keywords" type="text" value="{{keywords}}"/>
-      <button class="edit">Save Changes!</button>
-    {{else}}
-      <h4 class="title">{{title}}</h1>
-      <h4 class="locations">{{locations}}</h2>
-      <p class="description">{{description}}</p>
-      <h4 class="email">{{email}}</h3>
-      <span class="keywords">{{keywords}}</span>
-      <button class="edit">Edit!</button>
-    {{/if}}
+    <div class='row'>
+      <div class='twelve columns centered centalign'>
+      {{#if editing}}
+      <hr>
+      <h2>Edit Organization Page</h2>
+        <ul>
+          <li class='field'>
+            <label>Organization Name</label>
+            <input class='input' id="title" type="text" value="{{title}}" placeholder='Organization Name'/>
+          </li>
+          <li class='field'>
+            <label>Organization Email</label>
+            <input class='input' id="email" type="text" value="{{email}}" placeholder='Organization Email'/>
+          </li>
+          <li class='field'>
+            <label>Organization Location</label>
+            <input class='input' id="locations" type="text" value="{{locations}}" placeholder='Organization Location'/>
+          </li>
+          <li class='field'>
+            <label>Tags<br>Please separate your tags with commas. The more tags, the easier it is for people to find you</label>
+            <input class='input' id="keywords" type="text" value="{{keywords}}" placeholder='Related tags'/>
+          </li>
+          <li class='field'>
+            <label>Organization Description</label>
+            <textarea class='input textarea' id="description" type="text" value="{{description}}" placeholder='Organization Description'/>
+          </li>
+        <div class='secondary btn medium edit'><a>Save Changes!</a></div>
+      {{else}}
+        <div class="edit secondary btn medium"><a>Edit!</a></div>
+        <h2>Preview</h2>
+        <div class='imgreplacementlrg'><div class='repson'>{{title}}</div></div>
+        <h4><strong>Email:</strong> {{email}}</h4>
+        <h4><strong>Location:</strong> {{locations}}</h4>
+        <h4><strong>Tags:</strong> {{keywords}}</h4>
+        <p><h4><strong>Description</strong></h4> {{description}}</p>
+      {{/if}}
+      </div>
+    </div>
   {{/if}}
 </template>

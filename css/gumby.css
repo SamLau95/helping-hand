@@ -1682,6 +1682,8 @@ table.rounded thead th, table.rounded thead td, table.rounded caption + tbody tr
 
 .ie9 .radio.checked i, .ie9 .checkbox.checked i { top: 0; }
 
+.btn, .login-button, .additional-link-container { cursor: pointer; }
+
 .centalign { text-align: center; }
 
 .searchform { width: 100%; height: 30px; font-size: 18px; margin-top: 10px; margin-bottom: 5px; }
