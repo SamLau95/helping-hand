@@ -1688,4 +1688,4 @@ table.rounded thead th, table.rounded thead td, table.rounded caption + tbody tr
 
 #searchWrapper { -webkit-transition-duration: 0.5s; -moz-transition-duration: 0.5s; -o-transition-duration: 0.5s; transition-duration: 0.5s; }
 
-.vertalign { -webkit-transform: translate3d(0, 300px, 0); -moz-transform: translate3d(0, 300px, 0); -ms-transform: translate3d(0, 300px, 0); -o-transform: translate3d(0, 300px, 0); transform: translate3d(0, 300px, 0); }
+.vertalign { -webkit-transform: translate3d(0, 200px, 0); -moz-transform: translate3d(0, 200px, 0); -ms-transform: translate3d(0, 200px, 0); -o-transform: translate3d(0, 200px, 0); transform: translate3d(0, 200px, 0); }
