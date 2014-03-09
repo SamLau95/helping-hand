@@ -23,10 +23,10 @@ Template.searchForm.events({
 
 // Helpers for search
 var searchByKeyword = function(keyword) {
-  return Nonprofits.find({'keywords': kw}).fetch();
+  return Nonprofits.find({'keywords': keyword.toLowerCase()}).fetch();
 };
 
-var arrayCombiner = function(arr1, arr2) { return a1.concat(a2); };
+var arrayCombiner = function(arr1, arr2) { return arr1.concat(arr2); };
 
 // Search algorithm
 Template.npList.matches = function () {
