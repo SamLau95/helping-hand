@@ -31,14 +31,10 @@
 <template name="npList">
   <ul class='searchResults'>
     {{#each matches}}
-<<<<<<< HEAD
-      <li class="npo" id="{{ _id }}">{{name}}</li>
-=======
       <li>
-        <span class='searchname'>{{name}}</span><br>
+        <span class="searchname npo" id="{{ _id }}">{{name}}</span><br>
         <span class='keywords'>{{keywords}}</span>
       </li>
->>>>>>> Style search results with keys
     {{/each}}
   </ul>
 </template>
