@@ -6,7 +6,7 @@ Session.setDefault("query", "");
 Session.setDefault("viewingNpo", false);
 Session.setDefault("editing", false);
 Session.setDefault("showingEditForm", false)
-Session.set("loading", 5.0);
+Session.set("loading", .5);
 
 // Subscribe to nonprofit list
 Meteor.subscribe("nonprofits");
