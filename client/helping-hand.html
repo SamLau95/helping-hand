@@ -1,0 +1,20 @@
+<head>
+  <title>helping-hand</title>
+</head>
+
+<body>
+  {{> searchForm}}
+  {{> results }}
+</body>
+
+<template name="searchForm">
+  <input type="text" id="search" value="{{ query }}">
+</template>
+
+<template name="results">
+	{{#if noSearch}}
+    <h1> This is empty! </h1>
+  {{else}}
+    <h1> There's a query! </h1>
+  {{/if}}
+</template>
