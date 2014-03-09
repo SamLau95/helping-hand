@@ -1,1 +1,7 @@
 // Your custom SCSS should be written here...
+.centalign{text-align: center;}
+
+.searchform{width:100%; height:30px; font-size:$med; margin-top:10px;}
+
+#searchWrapper{@include transition-duration(0.5s);}
+.vertalign{@include translate3d(0, 300px, 0)}//margin-top:300px;}

@@ -8,13 +8,20 @@
 </body>
 
 <template name="searchForm">
-  <input type="text" id="search" value="{{ query }}">
+  <div class="row">
+    <div id='searchWrapper' class="eight columns centered centalign vertalign">
+      <input type="text" id="search" class="searchform" value="{{ query }}">
+    </div>
+  </div>
 </template>
 
 <template name = "results">
 	{{#if noSearch}}
-    <h1> This is empty! </h1>
   {{else}}
-    <h1> There's a query! </h1>
+    <div class="row">
+      <div class="twelve columns centered">
+        <h1> There's a query! </h1>
+      </div>
+    </div>
   {{/if}}
 </template>
