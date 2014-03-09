@@ -39,7 +39,7 @@ var timeLeft = function() {
 // Listen for typing in search form
 Template.searchForm.events({
   'keyup input': function(e, t) {
-    if (e.keyCode === 32 || e.keyCode === 13 || e.keyCode === 8) {
+    if (Session.get('loading') < 0 || e.keyCode === 32 || e.keyCode === 13 || e.keyCode === 8) {
       var query = t.find('#search').value;
       Session.set("query", query);
       if (!queryIsBlank())
