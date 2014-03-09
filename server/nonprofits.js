@@ -61,7 +61,7 @@ Meteor.startup(function() {
                   locations: 'Oakland',
                   description: 'LOREM IPSUM',
                   email: 'slin@collegetrack.org',
-                  owner: userIds[7] }
+                  owner: userIds[7] },
                 { title: 'Foundation for Sustainable Development',
                   keywords: ['sustainability', 'community', 'environment'],
                   locations: 'Oakland',
@@ -73,7 +73,7 @@ Meteor.startup(function() {
                   locations: 'Berkeley',
                   description: 'LOREM IPSUM',
                   email: 'shamar@rootsofsuccess.org',
-                  owner: userIds[9] }, ];
+                  owner: userIds[9] } ];
     _.map(NPOseeds, function(seed) { Nonprofits.insert(seed) })
   }
 });
