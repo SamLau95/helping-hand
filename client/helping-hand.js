@@ -28,8 +28,10 @@ Template.searchForm.events({
     Session.set("query", query);
     if (!queryIsBlank())
       $('#searchWrapper').removeClass('vertalign');
-    else
+    else {
       $('#searchWrapper').addClass('vertalign');
+      Session.set('viewingNpo', false);
+    }
   }
 });
 
@@ -135,7 +137,8 @@ Template.keywords.events({
       Session.set("Kedit", true);
     } else {
       var NPO = Nonprofits.findOne(t.data);
-      Nonprofits.update({_id: NPO._id}, { $set: {keywords: $("#keywords").val().split(",")}});
+      Nonprofits.update({_id: NPO._id},
+                        { $set: {keywords: $("#keywords").val().split(/,\s+/)}});
       Session.set("Kedit", false);
     }
   }
