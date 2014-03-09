@@ -71,14 +71,14 @@ Template.editForm.events({
     } else {
       var NPO = Nonprofits.findOne({owner: Meteor.user()._id});
       title = $("#title").val();
-      location: $("#locations").val();
+      locations = $("#locations").val();
       description = $("#description").val();
       email = $("#email").val();
       keywords = $("#keywords").val().split(/,\s*/);
       if (NPO == undefined) {
-        Nonprofits.insert({ title: title, keywords: keywords, location: location, description: description, email: email, owner: Meteor.user()._id });
+        Nonprofits.insert({ title: title, keywords: keywords, locations: locations, description: description, email: email, owner: Meteor.user()._id });
       } else {
-        Nonprofits.update({_id: NPO._id}, { $set: { title: title, keywords: keywords, location: location, description: description, email: email }});
+        Nonprofits.update({_id: NPO._id}, { $set: { title: title, keywords: keywords, locations: locations, description: description, email: email }});
       }
       Session.set("editing", false); 
     }

@@ -22,7 +22,7 @@ var searchByKeyword = function(keyword) {
   var re = new RegExp('.*' + keyword + '.*', 'i');
   return Nonprofits.find({$or: [{'keywords': keyword.toLowerCase()},
                                 {'title': re },
-                                {'location': re}]}).fetch();
+                                {'locations': re}]}).fetch();
 };
 
 var arrayCombiner = function(arr1, arr2) { return arr1.concat(arr2); };
