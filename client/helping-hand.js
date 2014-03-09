@@ -27,10 +27,11 @@ Template.searchForm.events({
     var query = t.find('#search').value;
     Session.set("query", query);
     if (!queryIsBlank())
-      $('#searchWrapper').removeClass('vertalign');
+      $("#searchWrapper").removeClass('vertalign');
     else {
-      $('#searchWrapper').addClass('vertalign');
-      Session.set('viewingNpo', false);
+      $("#searchWrapper").addClass('vertalign');
+      Session.set("viewingNpo", false);
+      Session.set("editForm", false);
     }
   }
 });
@@ -44,7 +45,7 @@ Template.npList.matches = function () {
 
 // Results template
 Template.results.searching = function() {
-  return !queryIsBlank() && !Session.get("viewingNpo");
+  return !queryIsBlank() && !Session.get("viewingNpo") && !Session.get("editForm");
 }
 
 // Search result listing
@@ -146,9 +147,9 @@ Template.contactForm.events({
   'click #sendEmail': function(e, t) {
     Meteor.call('sendEmail',
       Nonprofits.findOne(Session.get("viewingNpo")).email,
-      $('#emailFrom')[0].value,
-      $('#emailName')[0].value + " - " + $('#emailSubject')[0].value,
-      $('#emailContent')[0].value);
+      $("#emailFrom")[0].value,
+      $("#emailName")[0].value + " - " + $("#emailSubject")[0].value,
+      $("#emailContent")[0].value);
   }
 });
 
