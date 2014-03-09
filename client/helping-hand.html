@@ -17,12 +17,20 @@
 </template>
 
 <template name = "results">
-	{{#if noSearch}}
-  {{else}}
+	{{#if hasSearch}}
     <div class="row">
       <div class="twelve columns centered">
-        <h1> There's a query! </h1>
+        {{> npList}}
       </div>
     </div>
+  {{else}}
   {{/if}}
+</template>
+
+<template name="npList">
+  <ul>
+    {{#each nonProf}}
+      <li>{{name}}</li>
+    {{/each}}
+  </ul>
 </template>

@@ -6,19 +6,27 @@ function isEmpty(str) {
 
 if (Meteor.isClient) {
   Session.set("query", "");
-  Session.set("emptyQuery", true);
+  Session.set("emptyQuery", false);
   console.log(Nonprofits.find().fetch());
+
+  Meteor.autosubscribe(function () {
+    Meteor.subscribe("nonprofits", Session.get("query"));
+  });
+
+  Template.npList.nonProf = function () {
+    return Nonprofits.find();
+  }
 
   Template.searchForm.events({
     'keyup input': function(e, t) {
       query = t.find('#search').value;
       Session.set("query", query);
-      Session.set("emptyQuery", isEmpty(query));
+      Session.set("emptyQuery", !isEmpty(query));
       if (!isEmpty(query)){$('#searchWrapper').removeClass('vertalign');} else{$('#searchWrapper').addClass('vertalign');}
     }
   });
 
-  Template.results.noSearch = function() {
+  Template.results.hasSearch = function() {
     return Session.get("emptyQuery");
   }
 }
