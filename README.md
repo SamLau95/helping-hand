@@ -1,5 +1,6 @@
 ![logo](http://helping-hand.herokuapp.com/logo.png)
 ====
+http://helping-hand.meteor.com
 
 ## The Problem
 Lots of nonprofits. Lots of people who need their services. No one place to look for help.
